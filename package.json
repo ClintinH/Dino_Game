@@ -1,0 +1,19 @@
+{
+  "name": "dino-game-2",
+  "version": "1.0.0",
+  "description": "",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html && cp -vR ./imgs ./dist",
+    "build": "parcel build index.html --dist-dir ./dist -&-no-scope-hoist"
+  },
+  "author": "Clintin Herholdt",
+  "license": "ISC",
+  "dependencies": {
+    "cp": "^0.2.0",
+    "parcel": "^2.7.0"
+  },
+  "staticFiles": {
+    "staticPath": "imgs"
+  }
+}
