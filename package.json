@@ -4,16 +4,17 @@
   "description": "",
   "default": "index.html",
   "scripts": {
-    "start": "parcel index.html && cp -vR ./imgs ./dist",
+    "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist -&-no-scope-hoist"
   },
   "author": "Clintin Herholdt",
   "license": "ISC",
   "dependencies": {
-    "cp": "^0.2.0",
-    "parcel": "^2.7.0"
+    "parcel": "^2.7.0",
+    "parcel-reporter-static-files-copy": "^1.4.0"
   },
   "staticFiles": {
-    "staticPath": "imgs"
+    "staticPath": "imgs",
+    "staticOutPath": "imgs"
   }
 }
