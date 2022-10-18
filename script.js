@@ -56,6 +56,7 @@ function handleStart() {
   speedScale = 1;
   score = 0;
   audio.play();
+  audio.volume = 0.2;
   setupDino();
   setupCactus();
   setupGround();
