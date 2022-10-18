@@ -10,6 +10,7 @@
   "author": "Clintin Herholdt",
   "license": "ISC",
   "dependencies": {
+    "@parcel/transformer-js": "^2.7.0",
     "parcel": "^2.7.0",
     "parcel-reporter-static-files-copy": "^1.4.0"
   },
