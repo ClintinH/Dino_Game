@@ -66,9 +66,10 @@ body {
 }
 .score {
   position: fixed;
-  font-size: 3vmin;
-  right: 1vmin;
-  top: 1vmin;
+  font-size: 6vmin;
+  right: 5vmin;
+  top: 50vmin;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 .start-screen {
   position: fixed;
