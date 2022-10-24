@@ -16,10 +16,6 @@ const scoreEl = document.querySelector("[data-score]");
 const startScreen = document.querySelector("[data-start-screen]");
 const audio = document.querySelector("[data-audio]");
 
-setPixelWorldScale();
-window.addEventListener("resize", setPixelWorldScale);
-document.addEventListener("keydown", handleStart, { once: true });
-
 // GameLoop
 function update(time) {
   // Prevents first delta to have huge number
@@ -91,15 +87,6 @@ function checkLose() {
   return getcactusRect().some((rect) => isCollisionSmaller(rect, dinoRect));
 }
 
-function isCollision(rect1, rect2) {
-  return (
-    rect1.left < rect2.right &&
-    rect1.top < rect2.bottom &&
-    rect1.right > rect2.left &&
-    rect1.bottom > rect2.top
-  );
-}
-
 function isCollisionSmaller(rect1, rect2) {
   return (
     rect1.left + 25 < rect2.right &&
@@ -107,4 +94,57 @@ function isCollisionSmaller(rect1, rect2) {
     rect1.right - 50 > rect2.left &&
     rect1.bottom + 25 > rect2.top
   );
+}
+
+let images = [
+  "0-dino-lose.png",
+  "1-dino-lose.png",
+  "2-dino-lose.png",
+  "0-dino-run-0.png",
+  "0-dino-run-1.png",
+  "1-dino-run-0.png",
+  "1-dino-run-1.png",
+  "2-dino-run-0.png",
+  "2-dino-run-1.png",
+  "0-dino-stationary.png",
+  "1-dino-stationary.png",
+  "2-dino-stationary.png",
+  "bigCloud.png",
+  "cactus.png",
+  "cactus1.png",
+  "ground.png",
+  "mountain.png",
+  "smallCloud.png",
+  "desertGround.png",
+  "Sun.png",
+];
+
+///loader
+let bar_percentage = document.getElementById("bar_percentage");
+let percentage_number = document.getElementById("percentage_number");
+let loaderOverlay = document.getElementById("loaderOverlay");
+
+let img_queue = new createjs.LoadQueue();
+let completedProgress = 0;
+img_queue.addEventListener("progress", (event) => {
+  let progress_percentage = Math.floor(event.progress * 100);
+  bar_percentage.style.width = progress_percentage + "%";
+  percentage_number.innerHTML = progress_percentage + "%";
+  console.log("progress " + Math.floor(event.progress * 100));
+  if (progress_percentage === 100) preloaderComplete();
+});
+
+images.forEach((element) => {
+  img_queue.loadFile(`imgs/${element}`);
+});
+
+function preloaderComplete() {
+  //start game loop
+  setPixelWorldScale();
+  window.addEventListener("resize", setPixelWorldScale);
+  document.addEventListener("keydown", handleStart, { once: true });
+  loaderOverlay.remove();
+  // setTimeout(() => {
+  //   loaderOverlay.remove();
+  // }, 2000);
 }
