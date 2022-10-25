@@ -3,6 +3,7 @@ import {
   incrementCustomProperty,
   setCustomProperty,
 } from "./updateCustomProperty.js";
+import { replaceImg } from "./script.js";
 
 const dinoEl = document.querySelector("[data-dino]");
 const jumpSpeed = 0.45;
@@ -37,12 +38,14 @@ export function getdinoRect() {
 }
 
 export function setDinoLose() {
-  dinoEl.src = `imgs/${id}-dino-lose.png`;
+  replaceImg(`imgs/${id}-dino-lose.png`);
+  // dinoEl.src = `imgs/${id}-dino-lose.png`;
 }
 
 function handleRun(delta, speedScale) {
   if (isJumping) {
-    dinoEl.src = `imgs/${id}-dino-stationary.png`;
+    replaceImg(`imgs/${id}-dino-stationary.png`);
+    // dinoEl.src = `imgs/${id}-dino-stationary.png`;
     return;
   }
 
@@ -51,7 +54,8 @@ function handleRun(delta, speedScale) {
     dinoFrame = (dinoFrame + 1) % DinoFrameCount;
 
     // move animation between two pngs to similate running
-    dinoEl.src = `imgs/${id}-dino-run-${dinoFrame}.png`;
+    replaceImg(`imgs/${id}-dino-run-${dinoFrame}.png`);
+    // dinoEl.src = `imgs/${id}-dino-run-${dinoFrame}.png`;
     currentFrameTime -= frameTime;
   }
   currentFrameTime += delta * speedScale; // will let the dino run faster and faster and the defficult level increase

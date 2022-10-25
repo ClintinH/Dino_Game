@@ -148,3 +148,22 @@ function preloaderComplete() {
   //   loaderOverlay.remove();
   // }, 2000);
 }
+
+let loadedImages = new Map();
+
+img_queue.addEventListener("fileload", (e) => {
+  addImg(e.item.id, e.loader._rawResult);
+});
+
+export function replaceImg(id) {
+  const dinoEl = document.querySelector("[data-dino]");
+  let urlCreator = window.URL || window.webkitURL;
+  let imageUrl = urlCreator.createObjectURL(loadedImages.get(id));
+  dinoEl.src = imageUrl;
+}
+
+function addImg(id, loadedImg) {
+  if (!loadedImages.has(id)) {
+    loadedImages.set(id, loadedImg);
+  }
+}
